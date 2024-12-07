@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Discover Your Trip</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="logo">Travelista</div>
+            <nav class="navbar">
+                <a href="index.html">Home</a>
+                <a href="#services">Services</a>
+                <a href="#packages">Packages</a>
+                <a href="destinations.html">Destinations</a>
+                <a href="#contact">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="discover-form">
+        <h2>Plan Your Trip</h2>
+        <p>Fill in the details below to help us recommend the best trip for you.</p>
+
+        <div class="form-container">
+            <div class="form-card">
+                <form id="trip-form">
+                    <!-- Destination -->
+                    <div class="form-group">
+                        <label for="destination">Destination</label>
+                        <input type="text" id="destination" name="destination" required>
+                    </div>
+
+                    <!-- Start and End Date -->
+                    <div class="form-group">
+                        <label for="start-date">Start Date</label>
+                        <input type="date" id="start-date" name="start-date" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="end-date">End Date</label>
+                        <input type="date" id="end-date" name="end-date" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="trip-duration">Trip Duration</label>
+                        <input type="text" id="trip-duration" name="trip-duration" disabled>
+                    </div>
+
+                    <!-- Activities -->
+                    <div class="form-group">
+                        <label>Activities</label>
+                        <div class="activity-checkbox">
+                            <h3>Adventure</h3>
+                            <label><input type="checkbox" name="activities" value="Hiking"> Hiking</label>
+                            <label><input type="checkbox" name="activities" value="Cycling"> Cycling</label>
+                            <label><input type="checkbox" name="activities" value="Rafting"> Rafting</label>
+                        </div>
+                        <div class="activity-checkbox">
+                            <h3>Relaxation</h3>
+                            <label><input type="checkbox" name="activities" value="Beach"> Beach</label>
+                            <label><input type="checkbox" name="activities" value="Spa"> Spa</label>
+                            <label><input type="checkbox" name="activities" value="Yoga"> Yoga</label>
+                        </div>
+                        <div class="activity-checkbox">
+                            <h3>Culture</h3>
+                            <label><input type="checkbox" name="activities" value="Museum"> Museum</label>
+                            <label><input type="checkbox" name="activities" value="Sightseeing"> Sightseeing</label>
+                            <label><input type="checkbox" name="activities" value="Theatre"> Theatre</label>
+                        </div>
+                    </div>
+
+                    <!-- Trip Type (Radio Buttons) -->
+                    <div class="form-group">
+                        <label>Trip Type</label>
+                        <div class="trip-type">
+                            <label><input type="radio" name="trip-type" value="Solo"> Solo</label>
+                            <label><input type="radio" name="trip-type" value="Family"> Family</label>
+                            <label><input type="radio" name="trip-type" value="Friends"> Friends</label>
+                            <label><input type="radio" name="trip-type" value="Couple"> Couple</label>
+                        </div>
+                    </div>
+
+                    <!-- Budget -->
+                    <div class="form-group">
+                        <label for="budget">Budget (in INR)</label>
+                        <input type="range" id="budget" name="budget" min="500" max="10000" step="100" oninput="document.getElementById('budget-value').textContent = this.value">
+                        <p id="budget-value">500</p>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p>&copy; 2024 Travelista. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Function to calculate trip duration
+        const startDateInput = document.getElementById("start-date");
+        const endDateInput = document.getElementById("end-date");
+        const tripDurationInput = document.getElementById("trip-duration");
+
+        function calculateTripDuration() {
+            const startDate = new Date(startDateInput.value);
+            const endDate = new Date(endDateInput.value);
+
+            if (startDate && endDate && endDate >= startDate) {
+                const diffTime = endDate - startDate;
+                const diffDays = diffTime / (1000 * 3600 * 24);
+                tripDurationInput.value = diffDays + " days";
+            }
+        }
+
+        startDateInput.addEventListener("change", calculateTripDuration);
+        endDateInput.addEventListener("change", calculateTripDuration);
+    </script>
+</body>
+</html>
