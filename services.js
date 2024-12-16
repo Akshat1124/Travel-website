@@ -25,3 +25,5 @@ document.querySelectorAll('section').forEach(section => {
         document.querySelector('body').classList.remove('blurred');
     });
 });
+const iconUrl = `http://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`;
+document.getElementById('icon').src = iconUrl;
