@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Tour = ({ tour }) => {
   return (
@@ -24,17 +25,22 @@ const Tour = ({ tour }) => {
       <h4 style={{ color: '#2c5aa0', fontSize: '1.2rem', margin: '0.5rem 0' }}>
         ${tour.price}
       </h4>
-      <button style={{
-        backgroundColor: '#2c5aa0',
-        color: 'white',
-        border: 'none',
-        padding: '0.5rem 1rem',
-        borderRadius: '5px',
-        cursor: 'pointer',
-        marginTop: '0.5rem'
-      }}>
+      <Link 
+        to={`/tour/${tour._id}`}
+        style={{
+          backgroundColor: '#2c5aa0',
+          color: 'white',
+          border: 'none',
+          padding: '0.5rem 1rem',
+          borderRadius: '5px',
+          cursor: 'pointer',
+          marginTop: '0.5rem',
+          textDecoration: 'none',
+          display: 'inline-block'
+        }}
+      >
         View Details
-      </button>
+      </Link>
     </div>
   );
 };

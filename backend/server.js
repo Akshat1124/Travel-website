@@ -4,6 +4,7 @@ const cors = require('cors');
 const connectDB = require('./config/db');
 const userRoutes = require('./routes/userRoutes');
 const tourRoutes = require('./routes/tourRoutes');
+const bookingRoutes = require('./routes/bookingRoutes');
 
 // Load environment variables
 dotenv.config();
@@ -29,6 +30,9 @@ app.use('/api/users', userRoutes);
 
 // Mount tour routes
 app.use('/api/tours', tourRoutes);
+
+// Mount booking routes
+app.use('/api/bookings', bookingRoutes);
 
 // Start server
 const PORT = process.env.PORT || 5000;
