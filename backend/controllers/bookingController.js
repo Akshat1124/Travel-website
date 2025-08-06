@@ -20,4 +20,17 @@ const addBookingItems = async (req, res) => {
   }
 };
 
-module.exports = { addBookingItems };
+// @desc    Get logged in user's bookings
+// @route   GET /api/bookings
+// @access  Private
+const getMyBookings = async (req, res) => {
+  try {
+    const bookings = await Booking.find({ user: req.user._id }).populate('tour', 'name destination description price duration');
+    res.json(bookings);
+  } catch (error) {
+    console.error('Error fetching bookings:', error);
+    res.status(500).json({ message: 'Failed to fetch bookings', error: error.message });
+  }
+};
+
+module.exports = { addBookingItems, getMyBookings };

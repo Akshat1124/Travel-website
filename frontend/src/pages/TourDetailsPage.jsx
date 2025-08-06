@@ -2,11 +2,13 @@ import React, { useState, useEffect, useContext } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import AuthContext from '../context/AuthContext.jsx';
+import useAuth from '../hooks/useAuth';
 
 const TourDetailsPage = () => {
   const [tour, setTour] = useState(null);
   const { id: tourId } = useParams();
   const { userInfo } = useContext(AuthContext);
+  const { getAuthHeaders } = useAuth();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -24,27 +26,19 @@ const TourDetailsPage = () => {
 
   const bookingHandler = async () => {
     if (!userInfo) {
-      navigate('/login'); // Redirect to login if user is not logged in
+      navigate('/login');
       return;
     }
 
     try {
-      const config = {
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${userInfo.token}`,
-        },
-      };
-
       const { data } = await axios.post(
         '/api/bookings',
         { tourId: tour._id, price: tour.price },
-        config
+        getAuthHeaders() // Using the custom hook here
       );
 
-      console.log('Booking successful!', data);
       alert('Your tour has been booked successfully!');
-      // Later, we can redirect to a "My Bookings" page
+      navigate('/mybookings');
     } catch (error) {
       console.error('Booking failed:', error.response?.data?.message || error.message);
       alert('Booking failed. Please try again.');

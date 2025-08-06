@@ -20,6 +20,7 @@ const Header = () => {
         <Link to="/" style={{ margin: '0 10px' }}>Home</Link>
         {userInfo ? (
           <>
+            <Link to="/mybookings" style={{ margin: '0 10px' }}>My Bookings</Link>
             <span style={{ margin: '0 10px' }}>Welcome, {userInfo.name}</span>
             <button onClick={logoutHandler}>Logout</button>
           </>

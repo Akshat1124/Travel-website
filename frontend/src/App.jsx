@@ -6,6 +6,7 @@ import HomePage from './pages/HomePage';
 import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
 import TourDetailsPage from './pages/TourDetailsPage';
+import MyBookingsPage from './pages/MyBookingsPage';
 
 function App() {
   return (
@@ -14,9 +15,10 @@ function App() {
       <main style={{ padding: '2rem' }}>
         <Routes>
           <Route path="/" element={<HomePage />} />
+          <Route path="/tour/:id" element={<TourDetailsPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
-          <Route path="/tour/:id" element={<TourDetailsPage />} />
+          <Route path="/mybookings" element={<MyBookingsPage />} />
         </Routes>
       </main>
       <Footer />
