@@ -1,7 +1,11 @@
 const express = require('express');
-const { registerUser, loginUser } = require('../controllers/userController');
+const { registerUser, loginUser, getUsers } = require('../controllers/userController');
+const { protect, admin } = require('../middleware/authMiddleware');
 
 const router = express.Router();
+
+// GET /api/users - Admin only
+router.route('/').get(protect, admin, getUsers);
 
 // POST /api/users/register
 router.post('/register', registerUser);

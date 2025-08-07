@@ -38,6 +38,7 @@ const registerUser = async (req, res) => {
         _id: user._id,
         name: user.name,
         email: user.email,
+        isAdmin: user.isAdmin, // THE FIX IS HERE
         token: generateToken(user._id),
       });
     } else {
@@ -63,6 +64,7 @@ const loginUser = async (req, res) => {
         _id: user._id,
         name: user.name,
         email: user.email,
+        isAdmin: user.isAdmin, // THE FIX IS HERE
         token: generateToken(user._id),
       });
     } else {
@@ -73,7 +75,16 @@ const loginUser = async (req, res) => {
   }
 };
 
+// @desc    Get all users
+// @route   GET /api/users
+// @access  Private/Admin
+const getUsers = async (req, res) => {
+  const users = await User.find({});
+  res.json(users);
+};
+
 module.exports = {
   registerUser,
   loginUser,
+  getUsers,
 };

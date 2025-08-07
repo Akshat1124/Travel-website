@@ -21,6 +21,9 @@ const Header = () => {
         {userInfo ? (
           <>
             <Link to="/mybookings" style={{ margin: '0 10px' }}>My Bookings</Link>
+            {userInfo.isAdmin && (
+               <Link to="/admin/dashboard" style={{ margin: '0 10px' }}>Admin Dashboard</Link>
+            )}
             <span style={{ margin: '0 10px' }}>Welcome, {userInfo.name}</span>
             <button onClick={logoutHandler}>Logout</button>
           </>
