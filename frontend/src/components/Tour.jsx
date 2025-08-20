@@ -3,43 +3,17 @@ import { Link } from 'react-router-dom';
 
 const Tour = ({ tour }) => {
   return (
-    <div style={{ 
-      border: '1px solid #ddd', 
-      borderRadius: '8px', 
-      padding: '1.5rem', 
-      margin: '1rem',
-      boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
-      backgroundColor: '#fff'
-    }}>
-      {/* <img src={tour.image} alt={tour.name} style={{ width: '100%', borderRadius: '5px' }} /> */}
-      <h3 style={{ color: '#333', marginBottom: '0.5rem' }}>{tour.name}</h3>
-      <p style={{ color: '#666', marginBottom: '0.5rem' }}>
-        <strong>Destination:</strong> {tour.destination}
-      </p>
-      <p style={{ color: '#777', fontSize: '0.9rem', marginBottom: '0.5rem' }}>
-        {tour.description.substring(0, 100)}...
-      </p>
-      <p style={{ color: '#666', marginBottom: '0.5rem' }}>
-        <strong>Duration:</strong> {tour.duration} days
-      </p>
-      <h4 style={{ color: '#2c5aa0', fontSize: '1.2rem', margin: '0.5rem 0' }}>
-        ${tour.price}
-      </h4>
-      <Link 
-        to={`/tour/${tour._id}`}
-        style={{
-          backgroundColor: '#2c5aa0',
-          color: 'white',
-          border: 'none',
-          padding: '0.5rem 1rem',
-          borderRadius: '5px',
-          cursor: 'pointer',
-          marginTop: '0.5rem',
-          textDecoration: 'none',
-          display: 'inline-block'
-        }}
-      >
-        View Details
+    <div className="bg-white rounded-lg shadow-lg overflow-hidden transform hover:scale-105 transition-transform duration-300">
+      <Link to={`/tour/${tour._id}`}>
+        <img src={tour.image} alt={tour.name} className="w-full h-56 object-cover" />
+        <div className="p-6">
+          <h3 className="text-xl font-semibold text-gray-800 mb-2 truncate">{tour.name}</h3>
+          <p className="text-gray-600 mb-4">{tour.destination}</p>
+          <div className="flex justify-between items-center">
+            <p className="text-lg font-bold text-blue-600">₹{tour.price}</p>
+            <span className="text-sm text-gray-500">{tour.duration} days</span>
+          </div>
+        </div>
       </Link>
     </div>
   );

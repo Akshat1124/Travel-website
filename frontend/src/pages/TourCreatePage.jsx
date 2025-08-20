@@ -1,3 +1,4 @@
+import toast from 'react-hot-toast';
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
@@ -22,11 +23,11 @@ const TourCreatePage = () => {
         { name, destination, description, price, duration, image },
         getAuthHeaders()
       );
-      alert('Tour created successfully!');
+      toast.success('Tour created successfully!'); // <-- REPLACE ALERT
       navigate('/admin/tourlist');
     } catch (error) {
       console.error('Failed to create tour', error);
-      alert('Tour creation failed.');
+      toast.error('Tour creation failed.'); // <-- REPLACE ALERT
     }
   };
 

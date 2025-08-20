@@ -11,9 +11,9 @@ const HomePage = () => {
       try {
         const { data } = await axios.get('/api/tours');
         setTours(data);
-        setLoading(false);
       } catch (error) {
         console.error('Error fetching tours:', error);
+      } finally {
         setLoading(false);
       }
     };
@@ -22,27 +22,22 @@ const HomePage = () => {
   }, []);
 
   if (loading) {
-    return <div style={{ textAlign: 'center', padding: '2rem' }}>Loading tours...</div>;
+    return <div className="text-center py-10">Loading tours...</div>;
   }
 
   return (
     <div>
-      <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
-        <h1 style={{ color: '#2c5aa0', marginBottom: '0.5rem' }}>Welcome to Travelista</h1>
-        <p style={{ color: '#666', fontSize: '1.1rem' }}>Discover amazing destinations around the world</p>
+      <div className="text-center py-10 md:py-16">
+        <h1 className="text-4xl md:text-5xl font-extrabold text-gray-800">Find Your Next Adventure</h1>
+        <p className="text-lg text-gray-600 mt-4">Unforgettable journeys to the world's most amazing destinations.</p>
       </div>
-      
-      <h2 style={{ color: '#333', marginBottom: '1rem' }}>Available Tours ({tours.length})</h2>
-      
+
+      <h2 className="text-3xl font-bold text-gray-800 mb-6 border-b pb-2">Available Tours</h2>
+
       {tours.length === 0 ? (
-        <p style={{ textAlign: 'center', color: '#666' }}>No tours available at the moment.</p>
+        <p className="text-center text-gray-500 py-10">No tours available at the moment.</p>
       ) : (
-        <div style={{ 
-          display: 'grid', 
-          gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-          gap: '1rem',
-          marginTop: '1rem'
-        }}>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {tours.map((tour) => (
             <Tour key={tour._id} tour={tour} />
           ))}
